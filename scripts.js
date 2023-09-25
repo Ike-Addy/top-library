@@ -12,15 +12,18 @@ function render() {
     for (let i = 0; i < myLibrary.length; i++) {
         let book = myLibrary[i];
         let bookElement = document.createElement('div');
-        
         bookElement.innerHTML = `
             <h1>${book.title}</h1>
-            <p>${book.author}</p>
-            <p>${book.pagesRead}</p>`;
-        
+            <p>by ${book.author}</p>
+            <p>${book.pagesRead}</p>
+            <button class='remove-btn' onclick='removeBook(${i})'>Remove</button>`;        
         libraryBook.appendChild(bookElement);
-
     }
+}
+
+function removeBook(index) {
+    myLibrary.splice(index, 1)
+    render()
 }
 
 function addBookToLibrary() {
@@ -41,6 +44,8 @@ addBookBtn.addEventListener('click', function(event) {
 
     // After rendering the new book, clear all fields    
 })
+
+
 
 let myBookForm = document.querySelector('#my-books-form');
 let newBookBtn = document.querySelector('#new-book-btn');
