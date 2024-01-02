@@ -1,3 +1,25 @@
+// Modal functionality
+const modal = document.getElementById("inputModal");
+const span = document.getElementsByClassName("close")[0];
+const newBook = document.getElementById("new-book");
+
+newBook.addEventListener('click', () => {
+    console.log(newBook.id)
+    modal.style.display = 'block';
+})
+
+span.onclick = function() {
+    modal.style.display = 'none';
+}
+window.onclick = function(e) {
+    if (e.target == modal) {
+        modal.style.display = 'none'
+    }
+}
+
+
+// End of Modal functionality
+
 const bookTable = document.getElementById('book-table')
 
 const myLibrary = [
@@ -21,6 +43,4 @@ function displayBook(myLibrary) {
         bookTable.textContent += myLibrary[i].status;
     }
 }
-
-displayBook(myLibrary);
 
