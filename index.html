@@ -9,11 +9,10 @@
 </head>
 <body>
     <button id="new-book">New Book</button>
-    <div id="book-table"></div>
     <div id="inputModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <form>
+            <form id="bookForm">
                 <label for="title">Title</label><br>
                 <input type="text" name="title" id="title">
                 <label for="author">Author</label>
@@ -24,5 +23,15 @@
             <button id="submit-btn">Done</button>
         </div>
     </div>
+
+    <table id="book-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Read-Status</th>
+            </tr>
+        </thead>
+    </table>
 </body>
 </html>
