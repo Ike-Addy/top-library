@@ -1,13 +1,12 @@
 // Modal functionality
+const newBook = document.getElementById("new-book");
 const modal = document.getElementById("inputModal");
 const span = document.getElementsByClassName("close")[0];
-const newBook = document.getElementById("new-book");
+const submitBook = document.getElementById('submit-btn');
 
 newBook.addEventListener('click', () => {
-    console.log(newBook.id)
     modal.style.display = 'block';
 })
-
 span.onclick = function() {
     modal.style.display = 'none';
 }
@@ -16,8 +15,11 @@ window.onclick = function(e) {
         modal.style.display = 'none'
     }
 }
-
-
+// submitBook.addEventListener('click', displayBook);
+submitBook.addEventListener('click', (e) => {
+    e.preventDefault();
+    modal.style.display = 'none';
+})
 // End of Modal functionality
 
 const bookTable = document.getElementById('book-table')
@@ -36,11 +38,11 @@ function addBooktoLibrary() {
 
 }
 
-function displayBook(myLibrary) {
-    for (let i in myLibrary) {
-        bookTable.textContent += myLibrary[i].title;
-        bookTable.textContent += myLibrary[i].author;
-        bookTable.textContent += myLibrary[i].status;
-    }
-}
+// function displayBook(myLibrary) {
+//     for (let i in myLibrary) {
+//         bookTable.textContent += myLibrary[i].title;
+//         bookTable.textContent += myLibrary[i].author;
+//         bookTable.textContent += myLibrary[i].status;
+//     }
+// }
 
