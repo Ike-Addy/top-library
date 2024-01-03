@@ -15,23 +15,44 @@ window.onclick = function(e) {
         modal.style.display = 'none'
     }
 }
-submitBook.addEventListener('click', displayBook);
-submitBook.addEventListener('click', (e) => {
-    e.preventDefault();
-    modal.style.display = 'none';
-})
 // End of Modal functionality
 
-const bookTable = document.getElementById('book-table');
 
-function displayBook(Book) {
-    const bookForm = document.getElementById('bookForm');
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const status = document.getElementById('status').value;
+// DOM Input && Table Variables
+const titleInput = document.querySelector('#title');
+const authorInput = document.querySelector('#author');
+const statusInput = document.querySelector('#status');
+const table = document.getElementById('book-table');
+// DOM End of input && table variables
 
-    const book = new Book(title, author, status);
+// Display book in table
+submitBook.addEventListener('click', displayBook);
+
+function displayBook(e) {
+    e.preventDefault();
+
+    if (titleInput.value == '' && authorInput.value == '') {
+        return;
+    }
+
+    const row = document.createElement('tr');
+
+    const newTitle = document.createElement('td');
+    newTitle.textContent = titleInput.value;
+    row.appendChild(newTitle);
+
+    const newAuthor = document.createElement('td');
+    newAuthor.textContent = authorInput.value;
+    row.appendChild(newAuthor);
+
+    const newStatus = document.createElement('td');
+    newStatus.textContent = statusInput.checked ? 'Read' : 'Not Read';
+    row.appendChild(newStatus);
+
+    table.appendChild(row);
+    modal.style.display = 'none';
 }
+// End of display book
 
 const myLibrary = [];
 
@@ -39,9 +60,6 @@ function Book(title, author, status, removeBook) {
     this.title = title,
     this.author = author,
     this.status = status
-    removeBook() {
-        
-    } // add property that removes an individual book
 }
 
 // Adds books to library array
