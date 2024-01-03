@@ -31,10 +31,12 @@ submitBook.addEventListener('click', displayBook);
 function displayBook(e) {
     e.preventDefault();
 
+    // Prevents user from submitting empty inputs
     if (titleInput.value == '' && authorInput.value == '') {
         return;
     }
 
+    // Create new row for each book
     const row = document.createElement('tr');
 
     const newTitle = document.createElement('td');
@@ -49,9 +51,32 @@ function displayBook(e) {
     newStatus.textContent = statusInput.checked ? 'Read' : 'Not Read';
     row.appendChild(newStatus);
 
+    // Delete Book Button
+    const removeBtn = document.createElement('button');
+    removeBtn.textContent = 'Remove';
+    removeBtn.addEventListener('click', () => removeBook(row));
+
+    const removeCell = document.createElement('td');
+    removeCell.appendChild(removeBtn);
+    row.appendChild(removeCell);
+
     table.appendChild(row);
     modal.style.display = 'none';
+    // End
+    
+    // Clear text inside modal
+    titleInput.value = '';
+    authorInput.value = '';
+    statusInput.checked = '';
+    // 
 }
+
+// Delete book ++
+function removeBook(row) {
+    table.removeChild(row);
+    // remove element from myLibrary array
+}
+
 // End of display book
 
 const myLibrary = [];
@@ -66,6 +91,5 @@ function Book(title, author, status, removeBook) {
 function addBooktoLibrary() {
 
 }
-// Displays books on table
 
 
