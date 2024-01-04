@@ -108,7 +108,7 @@ function updateRow(row, book) {
 }
 
 // Remove book ++
-function removeBook(row) {
+function removeBook(row, book) {
     // remove from table
     table.removeChild(row);
     // remove element from myLibrary array
