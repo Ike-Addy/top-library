@@ -68,13 +68,13 @@ function displayBook(e) {
     modal.style.display = 'none';
 
     // Edit book ++
-    function editBook(row) {
+    function editBook(row, book) {
         // display modal
         modal.style.display = 'block';
         // display info of selected book
-        titleInput.value = newTitle.textContent;
-        authorInput.value = newAuthor.textContent;
-        statusInput.checked = newStatus.textContent.trim().toLowerCase() === 'read';
+        titleInput.value = book.title;
+        authorInput.value = book.author;
+        statusInput.checked = book.status;
         // when user selects done update book properties
         book.title = titleInput.value;
         book.author = authorInput.value;
@@ -139,5 +139,3 @@ function removeFromLibrary(book) {
     }
 }
 // END OF BOOK ARRAY FUNCTIONS ***
-
-
