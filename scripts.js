@@ -17,7 +17,6 @@ window.onclick = function(e) {
 }
 // End of Modal functionality
 
-
 // DOM Input && Table Variables
 const titleInput = document.querySelector('#title');
 const authorInput = document.querySelector('#author');
@@ -50,6 +49,30 @@ function displayBook(e) {
     const newStatus = document.createElement('td');
     newStatus.textContent = statusInput.checked ? 'Read' : 'Not Read';
     row.appendChild(newStatus);
+    
+    // Edit book button
+    const editBookBtn = document.createElement('button');
+    editBookBtn.textContent = 'Edit';
+    editBookBtn.addEventListener('click', () => editBook(row));
+
+    const editCell = document.createElement('td');
+    editCell.appendChild(editBookBtn);
+    row.appendChild(editCell);
+
+    table.appendChild(row);
+    modal.style.display = 'none';
+
+    // Edit book ++
+    function editBook(row) {
+        // display modal
+        modal.style.display = 'block';
+        // display info of selected book
+        titleInput.value = newTitle.textContent;
+        authorInput.value = newAuthor.textContent;
+        statusInput.checked = newStatus.textContent.trim().toLowerCase() === 'read';
+        // when user selects done, remove old book and update w/new
+        table.removeChild(row);
+    }
 
     // Delete Book Button
     const removeBtn = document.createElement('button');
@@ -59,15 +82,12 @@ function displayBook(e) {
     const removeCell = document.createElement('td');
     removeCell.appendChild(removeBtn);
     row.appendChild(removeCell);
-
-    table.appendChild(row);
-    modal.style.display = 'none';
     // End
-    
+  
     // Clear text inside modal
     titleInput.value = '';
     authorInput.value = '';
-    statusInput.checked = '';
+    statusInput.checked = false;
     // 
 }
 
@@ -76,12 +96,11 @@ function removeBook(row) {
     table.removeChild(row);
     // remove element from myLibrary array
 }
-
 // End of display book
 
 const myLibrary = [];
 
-function Book(title, author, status, removeBook) {
+function Book(title, author, status) {
     this.title = title,
     this.author = author,
     this.status = status
